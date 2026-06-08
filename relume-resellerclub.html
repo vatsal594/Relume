@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relume × ResellerClub - Partnership Opportunity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a; --white: #fafafa;
+    --accent: #c8f25a; --mid: #111111;
+    --border: rgba(255,255,255,0.08); --muted: rgba(255,255,255,0.42);
+    --card: #131313;
+    --font-d: 'Syne', sans-serif; --font-b: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-b); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 52px; background: rgba(10,10,10,0.88); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-d); font-size: 14px; font-weight: 700; letter-spacing: 0.05em; display: flex; align-items: center; gap: 10px; }
+  .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2.5s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 3px rgba(200,242,90,.18)} 50%{box-shadow:0 0 0 7px rgba(200,242,90,.04)} }
+  .nav-pill { font-size: 11px; color: var(--muted); border: 1px solid var(--border); padding: 5px 14px; border-radius: 20px; letter-spacing: 0.04em; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 52px 88px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 55% at 75% 25%, rgba(200,242,90,0.07) 0%, transparent 65%), radial-gradient(ellipse 45% 35% at 15% 85%, rgba(200,242,90,0.04) 0%, transparent 60%); }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px); background-size: 56px 56px; mask-image: linear-gradient(to bottom,transparent 0%,black 25%,black 70%,transparent 100%); }
+  .hero-content { position: relative; z-index: 1; max-width: 860px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
+  .eyebrow span { width: 28px; height: 1px; background: var(--accent); }
+  h1 { font-family: var(--font-d); font-size: clamp(40px,5vw,68px); font-weight: 800; line-height: 1.0; letter-spacing: -0.03em; }
+  h1 em { color: var(--accent); font-style: normal; }
+  .hero-sub { margin-top: 26px; max-width: 520px; font-size: 17px; font-weight: 300; color: rgba(255,255,255,.6); line-height: 1.75; }
+  .hero-stats { display: flex; gap: 52px; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .hs-num { font-family: var(--font-d); font-size: 38px; font-weight: 700; color: var(--accent); }
+  .hs-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* SECTIONS */
+  section { padding: 100px 52px; }
+  .stag { display: inline-block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  h2 { font-family: var(--font-d); font-size: clamp(30px,3.8vw,46px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 14px; }
+  .slead { font-size: 16px; color: rgba(255,255,255,.5); max-width: 560px; line-height: 1.75; margin-bottom: 52px; }
+
+  /* HOW IT WORKS */
+  .how-section { background: var(--mid); }
+  .how-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+  .how-cell { background: var(--card); padding: 36px 32px; position: relative; }
+  .how-arrow { display: flex; align-items: center; justify-content: center; background: var(--card); padding: 0 8px; font-size: 22px; color: rgba(255,255,255,.15); }
+  .how-num { font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 20px; }
+  .how-title { font-family: var(--font-d); font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+  .how-body { font-size: 13px; color: rgba(255,255,255,.48); line-height: 1.7; }
+  .how-price { font-family: var(--font-d); font-size: 32px; font-weight: 800; margin-top: 14px; }
+  .how-price.accent { color: var(--accent); }
+  .how-price.muted { color: rgba(255,255,255,.35); }
+  .profit-banner { grid-column: 1/-1; background: rgba(200,242,90,.07); border-top: 1px solid rgba(200,242,90,.15); padding: 28px 36px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .pb-label { font-size: 13px; color: rgba(200,242,90,.7); }
+  .pb-range { font-family: var(--font-d); font-size: 28px; font-weight: 800; color: var(--accent); }
+  .pb-note { font-size: 13px; color: rgba(255,255,255,.38); max-width: 380px; line-height: 1.6; }
+
+  /* BENCHMARK */
+  .bench-section { background: var(--black); }
+  .bench-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .bc { background: var(--card); padding: 36px 40px; }
+  .bc.full { grid-column: 1/-1; }
+  .bc-eye { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; display: flex; align-items: center; gap: 8px; }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
+  .bc-num { font-family: var(--font-d); font-size: 50px; font-weight: 800; letter-spacing: -0.03em; }
+  .bc-num.ac { color: var(--accent); }
+  .bc-label { font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .kpi-strip { display: flex; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 28px; }
+  .kpi { flex: 1; padding: 22px 26px; border-right: 1px solid var(--border); }
+  .kpi:last-child { border-right: none; }
+  .kpi-n { font-family: var(--font-d); font-size: 24px; font-weight: 700; color: var(--accent); }
+  .kpi-l { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* CALCULATOR */
+  .calc-section { background: var(--mid); }
+  .calc-top { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-bottom: 48px; }
+  .slider-block { margin-bottom: 28px; }
+  .sh { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .sname { font-size: 14px; color: rgba(255,255,255,.6); }
+  .sval { font-family: var(--font-d); font-size: 18px; font-weight: 700; color: var(--accent); }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 2px; background: rgba(255,255,255,.12); border-radius: 2px; outline: none; cursor: pointer; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); border: 3px solid var(--black); box-shadow: 0 0 0 1px var(--accent); transition: transform .15s; }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  .sr { display: flex; justify-content: space-between; margin-top: 6px; }
+  .sr span { font-size: 11px; color: rgba(255,255,255,.22); }
+  .stabs { display: flex; gap: 8px; margin-bottom: 28px; }
+  .stab { flex: 1; padding: 10px 0; text-align: center; font-size: 13px; font-weight: 500; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; background: transparent; color: var(--muted); transition: all .2s; font-family: var(--font-b); }
+  .stab:hover { border-color: rgba(200,242,90,.3); color: rgba(200,242,90,.7); }
+  .stab.active { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 700; }
+  .results-panel { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .rp-head { padding: 22px 30px; border-bottom: 1px solid var(--border); }
+  .rp-head-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .rrow { display: flex; justify-content: space-between; align-items: center; padding: 13px 30px; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .rrow:last-child { border-bottom: none; }
+  .rkey { font-size: 13px; color: rgba(255,255,255,.48); }
+  .rval { font-size: 14px; font-weight: 500; }
+  .rval.positive { color: var(--accent); }
+  .rval.cost { color: rgba(255,100,100,.8); }
+  .profit-highlight { background: rgba(200,242,90,.06); border: 1px solid rgba(200,242,90,.18); border-radius: 12px; margin: 18px 22px; padding: 22px 24px; text-align: center; }
+  .ph-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(200,242,90,.65); margin-bottom: 6px; }
+  .ph-amount { font-family: var(--font-d); font-size: 44px; font-weight: 800; color: var(--accent); letter-spacing: -0.03em; line-height: 1; }
+  .ph-sub { font-size: 12px; color: rgba(255,255,255,.38); margin-top: 8px; }
+  .snote { background: rgba(255,255,255,.03); border-radius: 8px; padding: 14px 16px; font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.65; margin-bottom: 24px; }
+
+  
+  /* CHART */
+  .chart-section { background: var(--black); }
+  .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; }
+  .chart-hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+  .chart-title { font-family: var(--font-d); font-size: 18px; font-weight: 700; }
+  .chart-leg { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .li { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+  .lsq { width: 10px; height: 10px; border-radius: 2px; }
+  .ldash { width: 20px; height: 0; border-top: 2px dashed rgba(200,80,48,.8); }
+
+  /* WHY */
+  .why-section { background: var(--mid); }
+  .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .wcard { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 34px 30px; transition: border-color .25s; }
+  .wcard:hover { border-color: rgba(200,242,90,.22); }
+  .wn { font-family: var(--font-d); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 18px; }
+  .wt { font-family: var(--font-d); font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .wb { font-size: 13px; color: rgba(255,255,255,.46); line-height: 1.7; }
+
+  /* CLOSING */
+  .closing-section { background: var(--black); text-align: center; padding: 120px 52px; }
+  .closing-section h2 { font-size: clamp(38px,5.5vw,68px); margin-bottom: 18px; }
+  .cpill { display: inline-block; background: rgba(200,242,90,.1); border: 1px solid rgba(200,242,90,.28); color: var(--accent); font-size: 12px; padding: 8px 20px; border-radius: 40px; letter-spacing: 0.06em; margin-bottom: 28px; }
+  .csub { font-size: 17px; color: rgba(255,255,255,.45); max-width: 460px; margin: 0 auto; line-height: 1.7; }
+  footer { padding: 26px 52px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .fl { font-family: var(--font-d); font-size: 12px; font-weight: 700; color: rgba(255,255,255,.25); }
+  .fr { font-size: 11px; color: rgba(255,255,255,.18); }
+
+  .fade-in { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media(max-width:900px){
+    nav,section,.hero,footer{ padding-left:24px; padding-right:24px; }
+    .hero{ padding-bottom:64px; }
+    .how-grid,.bench-grid,.calc-top,.why-grid{ grid-template-columns:1fr; }
+    .how-arrow{ display:none; }
+    .kpi-strip{ flex-wrap:wrap; }
+    .hero-stats{ gap:28px; }
+    .profit-banner{ flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><div class="nav-dot"></div> Relume × ResellerClub</div>
+  <div class="nav-pill">Confidential · Partnership Brief</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-content fade-in">
+    <div class="eyebrow"><span></span> Domain Partnership Opportunity</div>
+    <h1>How much Relume <em>leaves on the table</em><br>without domains.</h1>
+    <p class="hero-sub">Based on real traffic, conversion, and domain sales benchmarks.</p>
+    <div class="hero-stats">
+      <div><div class="hs-num">900K</div><div class="hs-label">Relume monthly page visits</div></div>
+      <div><div class="hs-num">$8.50</div><div class="hs-label">Relume's cost per .com domain</div></div>
+      <div><div class="hs-num">$4–$7</div><div class="hs-label">Profit per domain (Relume keeps)</div></div>
+     <div><div class="hs-num">$146K+</div><div class="hs-label">Conservative annual profit</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="stag">The Model</div>
+  <h2>How Relume earns<br>from every domain sale.</h2>
+  <p class="slead">Relume buys domains at ResellerClub's wholesale rate and sells at their own retail price. The margin is 100% Relume's to keep.</p>
+  <div class="how-grid fade-in">
+    <div class="how-cell">
+      <div class="how-num">STEP 01</div>
+      <div class="how-title">ResellerClub charges Relume</div>
+      <div class="how-body">Relume purchases the domain from ResellerClub at our best discounted wholesale rate.</div>
+      <div class="how-price muted">$8.50 <span style="font-size:14px;color:rgba(255,255,255,.25)">/com</span></div>
+    </div>
+    <div class="how-cell" style="display:flex;align-items:center;justify-content:center;background:var(--black);">
+      <div style="font-size:28px;color:rgba(200,242,90,.3);">→</div>
+    </div>
+    <div class="how-cell">
+      <div class="how-num">STEP 02</div>
+      <div class="how-title">Relume sells to the users</div>
+      <div class="how-body">Relume sets at own retail price - example $12.99 to $15.99 for .com. The difference is pure profit.</div>
+      <div class="how-price accent">$12.99 - $15.99</div>
+    </div>
+    <div class="profit-banner">
+      <div>
+        <div class="pb-label">Relume's net profit per .com domain</div>
+        <div class="pb-range">$4.49 - $7.49</div>
+      </div>
+      <div class="pb-note">Relume sets their own retail pricing. The higher they price, the more they earn per transaction - and they're fully in control of that number.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARK -->
+<section style="background:var(--mid);padding:100px 52px;">
+  <div class="stag">Live Benchmark</div>
+  <h2>Proof it works - from<br>a live partner.</h2>
+  <p class="slead">We already power domain reselling for an AI website builder with comparable traffic. These are their real April 2025 numbers.</p>
+  <div class="bench-grid fade-in">
+    <div class="bc">
+      <div class="bc-eye"><div class="live-dot"></div> AI website builder partner · April 2026</div>
+      <div class="bc-num">563<span style="font-size:26px;color:var(--muted)">K</span></div>
+      <div class="bc-label">Monthly page visits</div>
+    </div>
+    <div class="bc">
+      <div class="bc-eye">Domains sold</div>
+      <div class="bc-num ac">1,106</div>
+      <div class="bc-label">Domain purchases in April</div>
+    </div>
+    <div class="bc">
+      <div class="bc-eye">Gross domain revenue</div>
+      <div class="bc-num">$15,484</div>
+      <div class="bc-label">Total collected from customers</div>
+    </div>
+    <div class="bc">
+      <div class="bc-eye">Average selling price</div>
+      <div class="bc-num ac">$14</div>
+      <div class="bc-label">Per domain Retail cost to customers</div>
+    </div>
+    <div class="bc full">
+      <div class="bc-eye">Key takeaway</div>
+      <p style="font-size:15px;color:rgba(255,255,255,.58);max-width:680px;line-height:1.8;">At a <strong style="color:var(--white)">0.20% visit-to-purchase conversion rate</strong>, this partner turns 1 in every 500 visitors into a domain customer - with no paid acquisition cost. Relume has <strong style="color:var(--white)">60% more traffic</strong> than this partner, meaning the same conversion rate produces significantly more volume from day one.</p>
+      <div class="kpi-strip">
+        <div class="kpi"><div class="kpi-n">0.20%</div><div class="kpi-l">Conversion rate</div></div>
+        <div class="kpi"><div class="kpi-n">1,106</div><div class="kpi-l">Domains / month</div></div>
+        <div class="kpi"><div class="kpi-n">$185K+</div><div class="kpi-l">Estimated annual gross revenue</div></div>
+        <div class="kpi"><div class="kpi-n">100%</div><div class="kpi-l">Incremental income</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section">
+  <div class="stag">Relume's Profit Calculator</div>
+  <h2>What Relume actually<br>takes home.</h2>
+  <p class="slead">This shows Relume's net profit - after paying ResellerClub's $8.50 wholesale cost. Adjust retail price and conversion to see the impact.</p>
+  <div class="stabs">
+    <button class="stab active" onclick="setScenario('conservative')">Conservative</button>
+    <button class="stab" onclick="setScenario('moderate')">Moderate</button>
+    <button class="stab" onclick="setScenario('optimistic')">Optimistic</button>
+  </div>
+  <div class="snote" id="s-note">Same 0.20% conversion as our live partner. Relume retails .com at $12.99 - a modest, competitive price. Pure benchmark replication on Relume's larger traffic base.</div>
+  <div class="calc-top fade-in">
+    <div>
+      <div class="slider-block">
+        <div class="sh"><span class="sname">Monthly page visits</span><span class="sval" id="v-out">900K</span></div>
+        <input type="range" id="s-visits" min="500000" max="1500000" step="50000" value="900000">
+        <div class="sr"><span>500K</span><span>1.5M</span></div>
+      </div>
+      <div class="slider-block">
+        <div class="sh"><span class="sname">Conversion rate (visit → purchase)</span><span class="sval" id="c-out">0.20%</span></div>
+        <input type="range" id="s-conv" min="0.05" max="0.50" step="0.01" value="0.20">
+        <div class="sr"><span>0.05%</span><span>0.50%</span></div>
+      </div>
+      <div class="slider-block">
+        <div class="sh"><span class="sname">Relume's retail price per .com</span><span class="sval" id="a-out">$12.99</span></div>
+        <input type="range" id="s-retail" min="10" max="20" step="0.50" value="12.99">
+        <div class="sr"><span>$10</span><span>$20</span></div>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:16px 18px;font-size:13px;color:rgba(255,255,255,.38);line-height:1.65;">
+        <strong style="color:rgba(255,255,255,.55);">ResellerClub wholesale cost: $8.50/domain (fixed)</strong><br>
+        Relume's profit = retail price − $8.50. The higher Relume prices, the more they earn per domain.
+      </div>
+    </div>
+    <div class="results-panel">
+      <div class="rp-head"><div class="rp-head-title">Relume's profit breakdown</div></div>
+      <div class="rrow"><span class="rkey">Monthly visits</span><span class="rval" id="r-visits">900,000</span></div>
+      <div class="rrow"><span class="rkey">Conversion rate</span><span class="rval" id="r-conv">0.20%</span></div>
+      <div class="rrow"><span class="rkey">Domains sold / month</span><span class="rval" id="r-domains">1,800</span></div>
+      <div class="rrow"><span class="rkey">Gross revenue collected</span><span class="rval" id="r-gross">$23,382</span></div>
+      <div class="rrow"><span class="rkey">Wholesale cost to ResellerClub</span><span class="rval cost" id="r-cost">− $15,300</span></div>
+      <div class="rrow"><span class="rkey">Profit per domain</span><span class="rval positive" id="r-ppu">$4.49</span></div>
+      <div class="rrow"><span class="rkey">Monthly net profit</span><span class="rval positive" id="r-monthly">$8,082</span></div>
+      <div class="profit-highlight">
+        <div class="ph-label">Relume's annual net profit</div>
+        <div class="ph-amount" id="r-annual">$96,984</div>
+        <div class="ph-sub" id="r-sub">at $12.99 retail · 0.20% conversion · 900K visits</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHART -->
+<section class="chart-section">
+  <div class="stag">Sensitivity Analysis</div>
+  <h2>Relume's monthly profit<br>at every retail price.</h2>
+  <p class="slead">Based on 900K monthly visits, 0.20% benchmark conversion, and $8.50 wholesale cost. Bars show Relume's net profit at different retail prices.</p>
+  <div class="chart-card fade-in">
+    <div class="chart-hdr">
+      <div class="chart-title">Monthly net profit by retail price</div>
+      <div class="chart-leg">
+        <div class="li"><div class="lsq" style="background:#c8f25a"></div>Relume net profit</div>
+        <!-- <div class="li"><div class="ldash"></div>Live partner monthly gross ($15,484)</div> -->
+      </div>
+    </div>
+    <div style="position:relative;width:100%;height:300px;">
+      <canvas id="chart1" role="img" aria-label="Bar chart of Relume's monthly net profit at retail prices from $10 to $20 per domain">Profit ranges from around $2,700 at $10 retail to $20,700 at $20 retail, with 1,800 domains per month.</canvas>
+    </div>
+  </div>
+</section>
+
+<!-- SECOND CHART - conversion sensitivity -->
+<section style="background:var(--mid);padding:60px 52px 100px;">
+  <p class="slead" style="margin-bottom:32px;">And here's how annual profit scales as Relume's conversion rate improves with a better-integrated purchase flow.</p>
+  <div class="chart-card fade-in">
+    <div class="chart-hdr">
+      <div class="chart-title">Annual net profit by conversion rate (at $12.99 retail)</div>
+      <div class="chart-leg">
+        <div class="li"><div class="lsq" style="background:#c8f25a"></div>Annual profit</div>
+      </div>
+    </div>
+    <div style="position:relative;width:100%;height:280px;">
+      <canvas id="chart2" role="img" aria-label="Bar chart showing annual profit growing from about $29K at 0.10% conversion to $146K at 0.50% conversion">Annual profit scales linearly with conversion rate.</canvas>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why-section">
+  <div class="stag">Why Relume's Audience Is Ideal</div>
+  <h2>The strategic case.</h2>
+  <p class="slead">Relume's users aren't average web visitors - they're the highest-intent domain buyers on the internet.</p>
+  <div class="why-grid fade-in">
+    <div class="wcard">
+      <div class="wn">01</div>
+      <div class="wt">Peak purchase intent</div>
+      <div class="wb">Relume users are mid-build. The moment they finish designing a site is exactly when they need a domain - intent doesn't get higher anywhere else.</div>
+    </div>
+    <div class="wcard">
+      <div class="wn">02</div>
+      <div class="wt">100% incremental revenue</div>
+      <div class="wb">Every sale comes from an existing Relume user at zero acquisition cost. No ads, no new funnel - pure margin on top of Relume's existing business.</div>
+    </div>
+    <div class="wcard">
+      <div class="wn">03</div>
+      <div class="wt">Better UX keeps users</div>
+      <div class="wb">Today users leave Relume to buy domains elsewhere and sometimes don't return. A native domain flow closes the loop and keeps the launch journey inside Relume.</div>
+    </div>
+    <div class="wcard">
+      <div class="wn">04</div>
+      <div class="wt">Proven infrastructure</div>
+      <div class="wb">We've already built and launched this with a comparable AI website builder. APIs, onboarding, and support are ready. Time-to-live is weeks, not months.</div>
+    </div>
+    <div class="wcard">
+      <div class="wn">05</div>
+      <div class="wt">Scales with Relume's growth</div>
+      <div class="wb">At 900K visits today - and growing - every new user Relume acquires automatically increases domain revenue with no additional effort.</div>
+    </div>
+    <div class="wcard">
+      <div class="wn">06</div>
+      <div class="wt">Relume controls pricing</div>
+      <div class="wb">Relume sets their own retail price across all TLDs. They can price competitively or at a premium - the margin and positioning are entirely theirs to own.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing-section">
+  <div class="cpill">Next step</div>
+  <h2>Let's build this<br>together.</h2>
+  <p class="csub">The model is proven, the infrastructure is live, and the numbers speak for themselves. The only question is how quickly we move.</p>
+</section>
+
+<footer>
+  <div class="fl">Relume × ResellerClub · 2026</div>
+  <div class="fr">Confidential · Not for distribution</div>
+</footer>
+
+<script>
+  const WHOLESALE = 8.50;
+  const PARTNER_MONTHLY_GROSS = 15484;
+
+  const scenarios = {
+    conservative: { conv: 0.20, retail: 12.99, note: "Same 0.20% conversion as our live partner. Relume retails .com at $12.99 - a modest, competitive price. Pure benchmark replication on Relume's larger traffic base." },
+    moderate:     { conv: 0.25, retail: 13.99, note: "Slightly higher conversion (0.25%) and retail price ($13.99) - realistic given Relume's design-focused, higher-intent audience who are actively launching sites." },
+    optimistic:   { conv: 0.35, retail: 14.99, note: "0.35% conversion and $14.99 retail - achievable if domains are integrated into Relume's publish or site-launch flow at the highest-intent moment." }
+  };
+
+  function fmtV(v){ return v>=1000000?(v/1000000).toFixed(1).replace(/\.0$/,'')+'M':Math.round(v/1000)+'K'; }
+  function fmtD(n){ return '$'+n.toFixed(2); }
+  function fmtM(n){ return '$'+Math.round(n).toLocaleString(); }
+
+  function update(){
+    const visits = parseInt(document.getElementById('s-visits').value);
+    const conv   = parseFloat(document.getElementById('s-conv').value);
+    const retail = parseFloat(document.getElementById('s-retail').value);
+    const ppu    = retail - WHOLESALE;
+    const domains= Math.round(visits * conv / 100);
+    const gross  = domains * retail;
+    const cost   = domains * WHOLESALE;
+    const profit = domains * ppu;
+    const annual = profit * 12;
+
+    document.getElementById('v-out').textContent    = fmtV(visits);
+    document.getElementById('c-out').textContent    = conv.toFixed(2)+'%';
+    document.getElementById('a-out').textContent    = fmtD(retail);
+    document.getElementById('r-visits').textContent = visits.toLocaleString();
+    document.getElementById('r-conv').textContent   = conv.toFixed(2)+'%';
+    document.getElementById('r-domains').textContent= domains.toLocaleString();
+    document.getElementById('r-gross').textContent  = fmtM(gross);
+    document.getElementById('r-cost').textContent   = '− '+fmtM(cost);
+    document.getElementById('r-ppu').textContent    = fmtD(ppu);
+    document.getElementById('r-monthly').textContent= fmtM(profit);
+    document.getElementById('r-annual').textContent = fmtM(annual);
+    document.getElementById('r-sub').textContent    = 'at '+fmtD(retail)+' retail · '+conv.toFixed(2)+'% conversion · '+fmtV(visits)+' visits';
+
+    updateCharts(visits, conv, retail);
+  }
+
+  function setScenario(s){
+    document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
+    document.querySelector(`[onclick="setScenario('${s}')"]`).classList.add('active');
+    const sc = scenarios[s];
+    document.getElementById('s-conv').value   = sc.conv;
+    document.getElementById('s-retail').value = sc.retail;
+    document.getElementById('s-note').textContent = sc.note;
+    update();
+  }
+
+  let c1=null, c2=null;
+  function updateCharts(visits, conv, retail){
+    const prices  = [10,11,12,12.99,13.99,14.99,16,17,18,19,20];
+    const domains = Math.round(visits * conv / 100);
+    const profits = prices.map(p => Math.round(domains*(p-WHOLESALE)));
+    const labels  = prices.map(p => '$'+p.toFixed(2));
+
+    if(c1){
+      c1.data.datasets[0].data = profits;
+      c1.update(); 
+    } else {
+      c1 = new Chart(document.getElementById('chart1'),{
+        type:'bar',
+        data:{
+          labels,
+          datasets:[
+            { label:'Monthly net profit', data:profits, backgroundColor:'rgba(200,242,90,.72)', hoverBackgroundColor:'#c8f25a', borderRadius:5, barPercentage:.65 },
+            // { label:'Partner baseline', data:prices.map(()=>PARTNER_MONTHLY_GROSS), type:'line', borderColor:'rgba(200,80,48,.7)', borderWidth:2, borderDash:[5,4], pointRadius:0, fill:false, tension:0 }
+          ]
+        },
+        options:{
+          responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{display:false}, tooltip:{ backgroundColor:'#1a1a1a', borderColor:'rgba(255,255,255,.1)', borderWidth:1, titleColor:'rgba(255,255,255,.45)', bodyColor:'#c8f25a', callbacks:{ label:ctx=>'  '+fmtM(ctx.parsed.y)+' / month profit' } } },
+          scales:{
+            x:{ ticks:{color:'rgba(255,255,255,.3)',font:{size:11,family:'DM Sans'},autoSkip:false}, grid:{display:false}, border:{color:'rgba(255,255,255,.08)'} },
+            y:{ ticks:{color:'rgba(255,255,255,.3)',font:{size:11,family:'DM Sans'},callback:v=>'$'+(v>=1000?Math.round(v/1000)+'K':v)}, grid:{color:'rgba(255,255,255,.04)'}, border:{color:'transparent'} }
+          }
+        }
+      });
+    }
+
+    const rates   = [0.10,0.15,0.20,0.25,0.30,0.35,0.40,0.45,0.50];
+    const annuals = rates.map(r=>Math.round(visits*r/100*(retail-WHOLESALE)*12));
+    const rlabels = rates.map(r=>r.toFixed(2)+'%');
+
+    if(c2){
+      c2.data.datasets[0].data = annuals;
+      c2.update();
+    } else {
+      c2 = new Chart(document.getElementById('chart2'),{
+        type:'bar',
+        data:{
+          labels:rlabels,
+          datasets:[{ label:'Annual net profit', data:annuals, backgroundColor:'rgba(200,242,90,.65)', hoverBackgroundColor:'#c8f25a', borderRadius:5, barPercentage:.65 }]
+        },
+        options:{
+          responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{display:false}, tooltip:{ backgroundColor:'#1a1a1a', borderColor:'rgba(255,255,255,.1)', borderWidth:1, titleColor:'rgba(255,255,255,.45)', bodyColor:'#c8f25a', callbacks:{ label:ctx=>'  '+fmtM(ctx.parsed.y)+' / year profit' } } },
+          scales:{
+            x:{ ticks:{color:'rgba(255,255,255,.3)',font:{size:11,family:'DM Sans'},autoSkip:false}, grid:{display:false}, border:{color:'rgba(255,255,255,.08)'} },
+            y:{ ticks:{color:'rgba(255,255,255,.3)',font:{size:11,family:'DM Sans'},callback:v=>'$'+(v>=1000?Math.round(v/1000)+'K':v)}, grid:{color:'rgba(255,255,255,.04)'}, border:{color:'transparent'} }
+          }
+        }
+      });
+    }
+  }
+
+  ['s-visits','s-conv','s-retail'].forEach(id=>{
+    document.getElementById(id).addEventListener('input',()=>{
+      document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
+      update();
+    });
+  });
+
+  const obs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); },{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+  update();
+</script>
+</body>
+</html>
